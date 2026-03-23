@@ -2,8 +2,8 @@ export const SITE = {
   website: "https://blog.inkind.kr", // replace this with your deployed domain
   author: "inkind",
   profile: "",
-  desc: "가벼운 대화를 위한 흥미로운 이슈와 키워드 핵심 요약.",
-  title: "오늘의 Small.tok",
+  desc: "가벼운 대화를 위한 흥미로운 이슈",
+  title: "Small.tok",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,
