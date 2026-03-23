@@ -225,7 +225,7 @@ export default async post => {
       fonts: [
         {
           name: "Pretendard",
-          data: await fs.readFile("./public/fonts/Pretendard-Bold.ttf"),
+          data: await fs.readFile("./public/Pretendard-Bold.ttf"),
           weight: 700,
           style: "normal",
         },
