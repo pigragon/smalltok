@@ -2,6 +2,7 @@ import satori from "satori";
 // import { html } from "satori-html";
 import { SITE } from "@/config";
 import loadGoogleFonts from "../loadGoogleFont";
+import fs from "node:fs/promises";
 
 // const markup = html`<div
 //       style={{
@@ -221,9 +222,14 @@ export default async post => {
       width: 1200,
       height: 630,
       embedFont: true,
-      fonts: await loadGoogleFonts(
-        post.data.title + post.data.author + SITE.title + "by"
-      ),
+      fonts: [
+        {
+          name: "Pretendard",
+          data: await fs.readFile("./public/fonts/Pretendard-Bold.ttf"),
+          weight: 700,
+          style: "normal",
+        },
+      ],
     }
   );
 };
