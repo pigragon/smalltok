@@ -107,3 +107,71 @@ main article#article a:hover,
   text-decoration-style: solid !important;
   text-underline-offset: 6px; /* 밑줄을 글씨에서 살짝 띄워줌 */
 }
+
+/* ================================
+   블로그 본문 가독성 개선
+   ================================ */
+
+/* 1. 본문 줄간격 + 폰트 크기 */
+.prose p {
+  line-height: 1.95;
+  font-size: 1.05rem;
+  margin-bottom: 1.6rem;
+}
+
+/* 2. 소제목 위아래 여백 */
+.prose h2 {
+  margin-top: 2.8rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+/* 3. 브리핑 박스 (첫 번째 blockquote - 요약용) */
+.prose blockquote {
+  background-color: color-mix(in srgb, var(--accent) 6%, transparent);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  padding: 1rem 1.25rem;
+  margin: 1.8rem 0;
+  font-style: normal;
+  color: var(--foreground);
+}
+
+.prose blockquote p {
+  margin-bottom: 0.4rem;
+  line-height: 1.75;
+  font-size: 0.97rem;
+}
+
+/* 4. 하이라이트 박스 (본문 중간 강조문) 
+   - 브리핑 박스와 시각적으로 구분 */
+.prose blockquote:has(p:only-child) {
+  background-color: transparent;
+  border-left: 3px solid var(--accent);
+  border-radius: 0;
+  padding: 0.5rem 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.prose blockquote:has(p:only-child) p {
+  font-size: 1.05rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+/* 5. 구분선 여백 */
+.prose hr {
+  margin: 2.5rem 0;
+  border-color: var(--border);
+  opacity: 0.6;
+}
+
+/* 6. 불렛 리스트 간격 */
+.prose ul {
+  margin: 1rem 0 1.6rem;
+}
+
+.prose ul li {
+  margin-bottom: 0.5rem;
+  line-height: 1.8;
+}
