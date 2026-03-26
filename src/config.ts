@@ -1,5 +1,5 @@
 export const SITE = {
-  website: "https://blog.inkind.kr", // replace this with your deployed domain
+  website: "https://blog.inkind.kr/", // replace this with your deployed domain
   author: "inkind",
   profile: "",
   desc: "가벼운 대화를 위한 흥미로운 이슈",
