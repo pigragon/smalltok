@@ -14,18 +14,18 @@ import { slugifyStr } from "@/utils/slugify";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
 import { SITE } from "@/config";
-import getSortedPosts from "@/utils/getSortedPosts";
+import getSortedPosts from "@/utils/getSortedPosts"; // 👈 경로 에러 해결 (@/utils/)
 
 type Props = {
   post: CollectionEntry<"blog">;
   posts: CollectionEntry<"blog">[];
 };
 
-const { post, posts } = Astro.props; // 👈 여기서 post와 posts를 한 번만 깔끔하게 받아옵니다.
+const { post, posts } = Astro.props;
 
-// 👇 받아온 posts 데이터를 활용해 최근 글 4개를 뽑아냅니다.
+// 👇 최근 글 4개 추출 로직 (slug 대신 id 사용, 타입 에러 방지)
 const sortedPosts = getSortedPosts(posts);
-const recentPosts = sortedPosts.filter((p: CollectionEntry<"blog">) => p.id !== post.id).slice(0, 4);
+const recentPosts = sortedPosts.filter(p => p.id !== post.id).slice(0, 4);
 
 const {
   title,
@@ -119,11 +119,11 @@ const nextPost =
       <Content />
     </article>
 
-<div class="mt-12 border-t border-skin-line pt-8">
+    <div class="mt-12 border-t border-skin-line pt-8">
       <h2 class="text-2xl font-semibold tracking-wide text-skin-base">또 다른 스몰토크 주제들</h2>
       <ul class="mt-6 flex flex-col gap-4">
         {
-          recentPosts.map((recent: CollectionEntry<"blog">) => (
+          recentPosts.map(recent => (
             <li class="flex items-start gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" class="mt-1 h-5 w-5 min-w-[1.25rem] text-skin-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
               <a
@@ -152,7 +152,6 @@ const nextPost =
 
     <hr class="my-6 border-dashed" />
 
-    <!-- Previous/Next Post Buttons -->
     <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2">
       {
         prevPost && (
@@ -189,7 +188,7 @@ const nextPost =
 
 <script is:inline data-astro-rerun>
   /** Create a progress indicator
-   *  at the top */
+   * at the top */
   function createProgressBar() {
     // Create the main container div
     const progressContainer = document.createElement("div");
@@ -210,7 +209,7 @@ const nextPost =
   createProgressBar();
 
   /** Update the progress bar
-   *  when user scrolls */
+   * when user scrolls */
   function updateScrollProgress() {
     document.addEventListener("scroll", () => {
       const winScroll =
@@ -230,7 +229,7 @@ const nextPost =
   updateScrollProgress();
 
   /** Attaches links to headings in the document,
-   *  allowing sharing of sections easily */
+   * allowing sharing of sections easily */
   function addHeadingLinks() {
     const headings = Array.from(
       document.querySelectorAll("h2, h3, h4, h5, h6")
